@@ -12,6 +12,10 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
     - name: Lint with Flake8
-      run: flake8 scripts/
+      run: flake8 scripts/ tests/
+    - name: Check formatting with Black
+      run: black --check .
+    - name: Check imports with isort
+      run: isort --check-only .
     - name: Run tests
       run: pytest tests/
