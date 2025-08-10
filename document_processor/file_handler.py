@@ -24,8 +24,8 @@ class DocumentProcessor:
         total_size = sum(os.path.getsize(f.name) for f in files)
         if total_size > constants.MAX_TOTAL_SIZE:
             raise ValueError(
-                "Суммарный размер файлов превышает " +
-                f"{constants.MAX_TOTAL_SIZE//1024//1024} МБ"
+                "Суммарный размер файлов превышает "
+                + f"{constants.MAX_TOTAL_SIZE//1024//1024} МБ"
             )
 
     def process(self, files: List) -> List[Document]:
