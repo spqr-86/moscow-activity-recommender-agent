@@ -1,7 +1,10 @@
-from pydantic_settings import BaseSettings
-from typing import Optional, List
-from .constants import MAX_FILE_SIZE, MAX_TOTAL_SIZE, ALLOWED_TYPES
 import os
+from typing import List, Optional
+
+from pydantic_settings import BaseSettings
+
+from .constants import ALLOWED_TYPES, MAX_FILE_SIZE, MAX_TOTAL_SIZE
+
 
 class Settings(BaseSettings):
     # Required settings
@@ -31,5 +34,6 @@ class Settings(BaseSettings):
         env_file = ".env"
         env_file_encoding = "utf-8"
         extra = "allow"
+
 
 settings = Settings()

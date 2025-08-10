@@ -1,13 +1,15 @@
-import os
 import hashlib
-import pickle
 import json
+import os
+import pickle
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List
+
 from docling.document_converter import DocumentConverter
-from langchain_text_splitters import MarkdownHeaderTextSplitter
 from langchain.schema import Document
+from langchain_text_splitters import MarkdownHeaderTextSplitter
+
 from config import constants
 from config.settings import settings
 
@@ -22,7 +24,8 @@ class DocumentProcessor:
         total_size = sum(os.path.getsize(f.name) for f in files)
         if total_size > constants.MAX_TOTAL_SIZE:
             raise ValueError(
-                f"Суммарный размер файлов превышает {constants.MAX_TOTAL_SIZE//1024//1024} МБ"
+                "Суммарный размер файлов превышает " +
+                f"{constants.MAX_TOTAL_SIZE//1024//1024} МБ"
             )
 
     def process(self, files: List) -> List[Document]:
@@ -103,10 +106,7 @@ class DocumentProcessor:
 
     def _save_to_cache(self, chunks: List[Document], cache_path: Path):
         with open(cache_path, "wb") as f:
-            pickle.dump({
-                "timestamp": datetime.now().timestamp(),
-                "chunks": chunks
-            }, f)
+            pickle.dump({"timestamp": datetime.now().timestamp(), "chunks": chunks}, f)
 
     def _load_from_cache(self, cache_path: Path) -> List[Document]:
         with open(cache_path, "rb") as f:
