@@ -6,7 +6,6 @@ from langchain.vectorstores import Chroma
 from langchain_groq import ChatGroq
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
 
-
 load_dotenv()
 
 CHROMA_PERSIST_DIR = Path("chroma_db")
